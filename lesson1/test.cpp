@@ -10,14 +10,6 @@ int main(int argc, char* argv[])
 	CvCapture* capture = cvCreateCameraCapture(CV_CAP_ANY); //cvCaptureFromCAM( 0 );
 	assert( capture );
 
-	//cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, 640);//1280);
-	//cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, 480);//960);
-
-	// узнаем ширину и высоту кадра
-	double width = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH);
-	double height = cvGetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT);
-	printf("[i] %.0f x %.0f\n", width, height );
-
 	IplImage* frame=0;
 
 	cvNamedWindow("capture", CV_WINDOW_AUTOSIZE);
