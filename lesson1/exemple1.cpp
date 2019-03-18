@@ -3,7 +3,7 @@
 using namespace cv;
 using namespace std;
 
-// для компиляции g++ test.cpp -o test `pkg-config --cflags --libs opencv`
+// для компиляции g++ exemple1.cpp -o exemple1 `pkg-config --cflags --libs opencv`
 
 int main(int argc, char **argv)
 {
@@ -33,4 +33,7 @@ int main(int argc, char **argv)
 				//если нажата клавиша EST то выходим из программы
         if (waitKey(10)==27) break;
     }
+    //освобождение ресурсов
+    cap.release();
+    frame.release();
 }

@@ -19,4 +19,8 @@ int main(int argc, char **argv)
 				//если нажата клавиша EST то выходим из программы
         if (waitKey(10)==27) break;
     }
+    //освобождение ресурсов
+    cap.release();
+    frame.release();
+
 }
