@@ -19,8 +19,8 @@ int main(int argc, char **argv)
     while(cap.isOpened() && cap.read(frame))
     {
 			  //рисуем окружность вокруг точки нанализа
-        circle (frame, cvPoint(320,240),40,CV_RGB(255,0,0),1,1);
-        //анализ изображения 
+        circle (frame, Point(320,240),40,CV_RGB(255,0,0),1,1);
+        //анализ изображения
         if (int(frame.at<Vec3b>(320,240)[0])>150)putText(frame, "Blue apple", pt, 0,2, CV_RGB(100,0,200),2);
         else if (int(frame.at<Vec3b>(320,240)[1])>150) putText(frame, "Green apple", pt, 0,2, CV_RGB(100,0,200),2);
         else if (int(frame.at<Vec3b>(320,240)[2])>150) putText(frame, "Red apple", pt, 0,2, CV_RGB(100,0,200),2);
