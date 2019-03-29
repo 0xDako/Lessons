@@ -5,7 +5,7 @@
 using namespace cv;
 using namespace std;
 
-// для компиляции g++ searchLine.cpp -o searchLine `pkg-config --cflags --libs opencv`
+// для компиляции g++ Prog2.cpp -o Prog2 `pkg-config --cflags --libs opencv`
 
 int main(int argc, char **argv)
 {
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
         for (int i = 0; i < frame.cols; i++){
           //считаем что это начало линии
           start = i;
-          while ((i < frame.cols) && ((frame.at<Vec3b>(N, i)[2]) < 70) && ((frame.at<Vec3b>(N, i)[1]) < 70) && ((frame.at<Vec3b>(N, i)[0]) < 70)) // если черный или темный
+          while (i < frame.cols && frame.at<Vec3b>(N, i)[2] < 70 && frame.at<Vec3b>(N, i)[1] < 70 && frame.at<Vec3b>(N, i)[0] < 70) // если черный или темный
           {
     			     i++; // перебираем линию
           }
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
         //линия имеющая минимально отклонение и есть новая линия
         line = min;
         //отображаем в консоль полученную линию
-        cout<<line<<endl;
+        //cout<<line<<endl;
         //для наглядности рисуем круг на месте линии
         circle (frame, Point(min,N),10,CV_RGB(255,0,0),1,1);
         //выводим изображение в окно с именем "image"

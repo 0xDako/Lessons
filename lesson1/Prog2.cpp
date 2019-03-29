@@ -3,7 +3,7 @@
 using namespace cv;
 using namespace std;
 
-// для компиляции g++ exemple1.cpp -o exemple1 `pkg-config --cflags --libs opencv`
+// для компиляции g++ Prog2.cpp -o Prog2 `pkg-config --cflags --libs opencv`
 
 int main(int argc, char **argv)
 {
@@ -21,12 +21,12 @@ int main(int argc, char **argv)
 			  //рисуем окружность вокруг точки нанализа
         circle (frame, Point(320,240),40,CV_RGB(255,0,0),1,1);
         //анализ изображения
-        if (int(frame.at<Vec3b>(320,240)[0])>150)putText(frame, "Blue apple", pt, 0,2, CV_RGB(100,0,200),2);
-        else if (int(frame.at<Vec3b>(320,240)[1])>150) putText(frame, "Green apple", pt, 0,2, CV_RGB(100,0,200),2);
-        else if (int(frame.at<Vec3b>(320,240)[2])>150) putText(frame, "Red apple", pt, 0,2, CV_RGB(100,0,200),2);
+        if (frame.at<Vec3b>(320,240)[0]>150)putText(frame, "Blue apple", pt, 0,2, CV_RGB(100,0,200),2);
+        else if (frame.at<Vec3b>(320,240)[1]>150) putText(frame, "Green apple", pt, 0,2, CV_RGB(100,0,200),2);
+        else if (frame.at<Vec3b>(320,240)[2]>150) putText(frame, "Red apple", pt, 0,2, CV_RGB(100,0,200),2);
         else putText(frame, "Nothing", pt, 0,2, CV_RGB(100,0,200),2);
         imshow("image",frame);
-
+        
         //вывод всех составляющих на экран
         //cout << int(frame.at<Vec3b>(320,240)[0]) << " " << int(frame.at<Vec3b>(320,240)[1]) << " " <<int(frame.at<Vec3b>(320,240)[2]) << endl;
 

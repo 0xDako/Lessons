@@ -1,7 +1,7 @@
 #include "opencv2/opencv.hpp"
 using namespace cv;
 
-// для компиляции g++ test.cpp -o test `pkg-config --cflags --libs opencv`
+// для компиляции g++ Prog1.cpp -o Prog1 `pkg-config --cflags --libs opencv`
 
 int main(int argc, char **argv)
 {
