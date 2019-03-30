@@ -48,6 +48,8 @@ int main(int argc, char **argv)
               Rect boundingarea = boundingRect(approx);
               //рисуем его на картинке
 			        rectangle(frame, boundingarea, Scalar(255), 5, 8, 0);
+              //вывод в консоль информации распознаной фигуре
+              cout << "Треугольник" <<endl;
             }
       }
     //выводим картинку с контурами
