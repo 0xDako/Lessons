@@ -1,7 +1,10 @@
 #include "opencv2/opencv.hpp"
 #include <iostream>
+#include "colors.h"
+
 using namespace cv;
 using namespace std;
+
 
 // для компиляции g++ Prog1.cpp -o Prog1 `pkg-config --cflags --libs opencv`
 
@@ -13,15 +16,16 @@ int main(int argc, char **argv)
     VideoCapture cap;
 		//открытие потока(-1 -- любая доступная камера)
  		cap.open(-1);
-		// до тех пор пока поток видеозахвата открыт и можно считать изображение выводи его
+    // до тех пор пока поток видеозахвата открыт и можно считать изображение выводи его
     while(cap.isOpened() && cap.read(frame))
     {
-      //переменная для хранения ЧБ изображения
-      Mat gray_img;
+      //переменная для хранения ЧБ изображени
+      Mat gray_img, img;
       //размытие изображения для уменьшения цветового мусора
       GaussianBlur(frame, frame, Size(3, 3), 0);
-      //делаем копию изображения для дальнейшей работы
+      //делаем копии изображения для дальнейшей работы
   		frame.copyTo(gray_img);
+      frame.copyTo(img);
       //переводим изображение в ЧБ
   		cvtColor(gray_img, gray_img, CV_BGR2GRAY);
       //вектор для хранения контуров
@@ -47,15 +51,21 @@ int main(int argc, char **argv)
               //находим минимальный прямоугольни обрамляющий контур
               Rect boundingarea = boundingRect(approx);
               //рисуем его на картинке
-			        rectangle(frame, boundingarea, Scalar(255), 5, 8, 0);
+              rectangle(img, boundingarea, Scalar(255), 5, 8, 0);
               //вывод в консоль информации распознаной фигуре
               cout << "Треугольник" <<endl;
+              //вырезаем распознаную фигуру из всего изображения
+              Mat roi = frame(boundingarea);
+              //подсчитываем кол-во цветов на выреззаной фигуре
+              imshow("ROI",roi);
+              vector<int> colors = ColorAnalys(roi);
+              cout <<"red:"<<colors[0]<<" green:"<<colors[1]<<" blue:"<<colors[2]<< endl;
             }
       }
     //выводим картинку с контурами
     imshow("gray",gray_img);
-	  //выводим изображение в окно с именем "image"
-    imshow("image",frame);
+	  //выводим само изображение
+    imshow("image",img);
 		//если нажата клавиша EST то выходим из программы
     if (waitKey(5)==27) break;
     }
